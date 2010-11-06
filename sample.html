@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>get jp postal code</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.zip2addr.js"></script>
+<style>
+h2 {
+	font-size: 130%;
+	margin-top: 2em;
+}
+
+pre {
+	background: #eaeaea;
+	padding: .5em;
+}
+
+</style>
+</head>
+<body>
+
+<h1>郵便番号から住所補完zip2addrサンプル</h1>
+<ul>
+<li>Google日本語入力APIを利用し、完全にメンテナンスフリーな住所補完機能を提供します。</li>
+<li>フロントエンドのJavaScriptのみで作動するため、サーバーサイドに手を加える必要はありません。</li>
+<li>数行のJavaScriptを書くだけで簡単に既存のフォームに実装できます。</li>
+</ul>
+
+<h2>jQueryとzip2addrの読み込み</h2>
+<p>下記のようにjQueryとzip2addrを読み込んでおきます。これで準備は完了。</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.zip2addr.js&quot;&gt;&lt;/script&gt;
+</pre>
+
+<h2>シンプルなケース</h2>	
+<dl>
+<dt>郵便番号</dt>
+<dd><input type="text" name="" id="zip" size="8"/></dd>
+<dt>住所</dt>
+<dd><input type="text" name="" id="addr" size="40" /></dd>
+</dl>
+
+<pre>
+$('#zip').zip2addrJp('#addr')
+</pre>
+
+
+<script>
+$('#zip').zip2addrJp('#addr')
+</script>
+
+
+<h2>都道府県が別フィールドの場合</h2>
+
+<dl>
+<dt>郵便番号</dt>
+<dd><input type="text" name="" id="zip2" size="8"/></dd>
+<dt>住所</dt>
+<dd>
+	<input type="text" name="" id="pref2" size="5" />
+	<input type="text" name="" id="addr2" size="34" />
+</dd>
+</dl>
+
+<pre>
+$('#zip2').zip2addrJp({
+	pref:'#pref2',
+	addr:'#addr2'
+})
+</pre>
+
+<script>
+$('#zip2').zip2addrJp({
+	pref:'#pref2',
+	addr:'#addr2'
+})
+</script>
+
+
+<h2>都道府県がselect要素の場合</h2>
+
+<dl>
+<dt>郵便番号</dt>
+<dd><input type="text" name="" id="zip3" size="8"/></dd>
+<dt>住所</dt>
+<dd>
+	<select name="pref" id="pref3">
+	<option></option>
+	<option>北海道</option>
+	<option>青森県</option>
+	<option>岩手県</option>
+	<option>宮城県</option>
+	<option>秋田県</option>
+	<option>山形県</option>
+	<option>福島県</option>
+	<option>茨城県</option>
+	<option>栃木県</option>
+	<option>群馬県</option>
+	<option>埼玉県</option>
+	<option>千葉県</option>
+	<option>東京都</option>
+	<option>神奈川県</option>
+	<option>新潟県</option>
+	<option>富山県</option>
+	<option>石川県</option>
+	<option>福井県</option>
+	<option>山梨県</option>
+	<option>長野県</option>
+	<option>岐阜県</option>
+	<option>静岡県</option>
+	<option>愛知県</option>
+	<option>三重県</option>
+	<option>滋賀県</option>
+	<option>京都府</option>
+	<option>大阪府</option>
+	<option>兵庫県</option>
+	<option>奈良県</option>
+	<option>和歌山県</option>
+	<option>鳥取県</option>
+	<option>島根県</option>
+	<option>岡山県</option>
+	<option>広島県</option>
+	<option>山口県</option>
+	<option>徳島県</option>
+	<option>香川県</option>
+	<option>愛媛県</option>
+	<option>高知県</option>
+	<option>福岡県</option>
+	<option>佐賀県</option>
+	<option>長崎県</option>
+	<option>熊本県</option>
+	<option>大分県</option>
+	<option>宮崎県</option>
+	<option>鹿児島県</option>
+	<option>沖縄県</option>
+	</select>
+	<input type="text" name="" id="addr3" size="34" />
+</dd>
+</dl>
+
+<pre>
+$('#zip3').zip2addrJp({
+	pref:'#pref3',
+	addr:'#addr3'
+})
+</pre>
+
+<script>
+$('#zip3').zip2addrJp({
+	pref:'#pref3',
+	addr:'#addr3'
+})
+</script>
+
+<h2>郵便番号フィールドが別れている場合</h2>
+
+<dl>
+<dt>郵便番号</dt>
+<dd><input type="text" name="" id="zip4-1" size="3"/> - <input type="text" name="" id="zip4-2" size="4"/></dd>
+<dt>住所</dt>
+<dd><input type="text" name="" id="addr4" size="40" /></dd>
+</dl>
+
+<pre>
+$('#zip4-1').zip2addrJp({
+	zip2:'#zip4-2',
+	addr:'#addr4'
+})
+</pre>
+
+<script>
+$('#zip4-1').zip2addrJp({
+	zip2:'#zip4-2',
+	addr:'#addr4'
+})
+</script>
+
+<h2>郵便番号フィールドも住所フィールドも別れている場合</h2>
+
+<dl>
+<dt>郵便番号</dt>
+<dd><input type="text" name="" id="zip5-1" size="3"/> - <input type="text" name="" id="zip5-2" size="4"/></dd>
+<dt>住所</dt>
+<dd>
+	<input type="text" name="" id="pref5" size="5" />
+	<input type="text" name="" id="addr5" size="34" />
+</dd>
+</dl>
+
+<pre>
+$('#zip5-1').zip2addrJp({
+	zip2:'#zip5-2',
+	pref:'#pref5',
+	addr:'#addr5'
+})
+</pre>
+
+<script>
+$('#zip5-1').zip2addrJp({
+	zip2:'#zip5-2',
+	pref:'#pref5',
+	addr:'#addr5'
+})
+</script>
+
+
+</body>
+</html>
