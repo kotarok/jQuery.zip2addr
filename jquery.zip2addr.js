@@ -1,8 +1,11 @@
 $.fn.zip2addr = function(target){
     var c = {
 		api: 'http://www.google.com/transliterate?langpair=ja-Hira|ja&jsonp=?',
-		prefectureToken: '(東京都|道|府|県)'
+		prefectureToken: '(東京都|道|府|県)',
+		zipDelimiter: '-'
     }
+
+	var cache = $.fn.zip2addr.cache;
 
     var getAddr = function(zip,callback){
         $.getJSON(c.api,{'text':zip},
@@ -53,7 +56,7 @@ $.fn.zip2addr = function(target){
 	})();
 
 	var check = function(_val){
-		var val = fascii2ascii(_val).replace(/\D/,'');
+		var val = fascii2ascii(_val).replace(/\D/g,'');
 		if(val.length == 7){
 			if(cache[val] == undefined){
 				getAddr(val.replace(/(\d\d\d)(\d\d\d\d)/,'$1-$2'),function(json){
@@ -65,8 +68,6 @@ $.fn.zip2addr = function(target){
 			}
 		}
 	}
-
-	var cache = $.fn.zip2addr.cache;
 
     this.each(function(){
         var elem = $(this);
@@ -81,7 +82,7 @@ $.fn.zip2addr = function(target){
 			elem.bind('keyup.zip2addr change.zip2addr',function(){check(elem.val())})
 			elem.bind('blur.zip2addr',function(){
 				$(this).val(function(){
-					 return fascii2ascii($(this).val())
+					return fascii2ascii($(this).val()).replace(/\D/g,'').replace(/(\d\d\d)(\d\d\d\d)/,'$1'+c.zipDelimiter+'$2')
 				})
 			})
 		}
