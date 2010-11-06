@@ -53,7 +53,8 @@ $.fn.zip2addrJp = function(target){
 	})();
 
 	var check = function(_val){
-		var val = _val.replace(/\D/,'');
+		var val = fascii2ascii(_val);
+		val = val.replace(/\D/,'');
 		if(val.length == 7){
 			if(cache[val] == undefined){
 				getAddr(val.replace(/(\d\d\d)(\d\d\d\d)/,'$1-$2'),function(json){
