@@ -1,3 +1,15 @@
+/*
+ * jQuery.zip2addr
+ *
+ * Copyright 2010, Kotaro Kokubo a.k.a kotarok kotaro@nodot.jp
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * https://github.com/kotarok/jQuery.zip2addr
+ *
+ * Depends:
+ *	jQuery 1.4 or above
+ */
+
 $.fn.zip2addr = function(target){
     var c = {
 		api: 'http://www.google.com/transliterate?langpair=ja-Hira|ja&jsonp=?',
