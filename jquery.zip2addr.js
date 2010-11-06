@@ -72,19 +72,23 @@ $.fn.zip2addr = function(target){
     this.each(function(){
         var elem = $(this);
 		if(typeof target == 'object' && target.zip2){
-			elem.add($(target.zip2)).bind('keyup.zip2addr change.zip2addr',function(){check(elem.val()+''+$(target.zip2).val())})
-			elem.add($(target.zip2)).bind('blur.zip2addr',function(){
-				$(this).val(function(){
-					return fascii2ascii($(this).val())
+			elem.add($(target.zip2))
+				.bind('keyup.zip2addr change.zip2addr',function(){
+					check(elem.val()+''+$(target.zip2).val())
 				})
-			})
+				.bind('blur.zip2addr',function(){
+					$(this).val(function(){
+						return fascii2ascii($(this).val())
+					})
+				})
 		}else{
-			elem.bind('keyup.zip2addr change.zip2addr',function(){check(elem.val())})
-			elem.bind('blur.zip2addr',function(){
-				$(this).val(function(){
-					return fascii2ascii($(this).val()).replace(/\D/g,'').replace(/(\d\d\d)(\d\d\d\d)/,'$1'+c.zipDelimiter+'$2')
+			elem
+				.bind('keyup.zip2addr change.zip2addr',function(){check(elem.val())})
+				.bind('blur.zip2addr',function(){
+					$(this).val(function(){
+						return fascii2ascii($(this).val()).replace(/\D/g,'').replace(/(\d\d\d)(\d\d\d\d)/,'$1'+c.zipDelimiter+'$2')
+					})
 				})
-			})
 		}
     });
 
