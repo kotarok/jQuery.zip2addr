@@ -58,6 +58,14 @@ $.fn.zip2addrJp = function(target){
 		}
 	}
 
+	//From http://liosk.blog103.fc2.com/blog-entry-72.html
+	var fascii2ascii = (function() {
+		var pattern = /[\uFF01-\uFF5E]/g, replace = function(m) {
+			return String.fromCharCode(m.charCodeAt() - 0xFEE0);
+		};
+		return function(s){return s.replace(pattern, replace);};
+	})();
+
 	var cache = $.fn.zip2addrJp.cache;
 
     this.each(function(){
