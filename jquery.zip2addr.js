@@ -29,8 +29,6 @@ $.fn.zip2addr = function(target){
 		)
 	}
 	
-	var buildZip = function(){}
-
 	var fillAddr = (function(){
 		if(typeof target == 'object' && target.pref){
 			return function(addr){
