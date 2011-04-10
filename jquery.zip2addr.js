@@ -5,7 +5,7 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  *
  * https://github.com/kotarok/jQuery.zip2addr
- * hogehogehogeh
+ *
  * Depends:
  *	jQuery 1.4 or above
  */
