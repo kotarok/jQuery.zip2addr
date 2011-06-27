@@ -12,7 +12,7 @@
 
 $.fn.zip2addr = function(target){
     var c = {
-		api: 'http://www.google.com/transliterate?langpair=ja-Hira|ja&jsonp=?',
+		api: location.protocol + '//www.google.com/transliterate?langpair=ja-Hira|ja&jsonp=?',
 		prefectureToken: '(東京都|道|府|県)',
 		zipDelimiter: '-'
     }
